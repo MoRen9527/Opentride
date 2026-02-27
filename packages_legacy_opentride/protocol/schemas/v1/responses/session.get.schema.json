@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/responses/session.get.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload", "requestId"],
+      "properties": {
+        "kind": { "const": "response" },
+        "type": { "const": "session.get" },
+        "payload": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": ["result"],
+              "not": { "required": ["error"] },
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "required": ["session"],
+                  "properties": {
+                    "session": { "type": "object", "additionalProperties": true },
+                    "state": { "type": "object", "additionalProperties": true },
+                    "etag": { "type": "string" }
+                  }
+                }
+              }
+            },
+            {
+              "required": ["error"],
+              "not": { "required": ["result"] },
+              "properties": {
+                "error": { "$ref": "../defs.schema.json#/definitions/Error" }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

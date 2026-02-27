@@ -1,0 +1,16 @@
+{
+  "name": "@opentride/runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "opentride-runtime": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node ./src/cli.js",
+    "dev": "node ./src/cli.js"
+  },
+  "dependencies": {
+    "fastify": "^4.29.1"
+  }
+}

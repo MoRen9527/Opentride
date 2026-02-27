@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/responses/session.create.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload", "requestId"],
+      "properties": {
+        "kind": { "const": "response" },
+        "type": { "const": "session.create" },
+        "payload": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": ["result"],
+              "not": { "required": ["error"] },
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "required": ["session"],
+                  "properties": {
+                    "session": {
+                      "type": "object",
+                      "required": ["id", "createdAt"],
+                      "properties": {
+                        "id": { "$ref": "../defs.schema.json#/definitions/Id" },
+                        "createdAt": { "$ref": "../defs.schema.json#/definitions/TimestampMs" },
+                        "workspaceRoot": { "type": "string" },
+                        "cwd": { "type": "string" },
+                        "state": { "type": "string" }
+                      }
+                    },
+                    "defaults": { "type": "object", "additionalProperties": true },
+                    "warnings": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              }
+            },
+            {
+              "required": ["error"],
+              "not": { "required": ["result"] },
+              "properties": {
+                "error": { "$ref": "../defs.schema.json#/definitions/Error" }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

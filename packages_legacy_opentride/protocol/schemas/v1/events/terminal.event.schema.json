@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/events/terminal.event.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "event" },
+        "type": { "const": "terminal.event" },
+        "payload": {
+          "type": "object",
+          "required": ["sessionId", "runId", "terminal"],
+          "properties": {
+            "sessionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "runId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "terminal": {
+              "type": "object",
+              "required": ["kind"],
+              "additionalProperties": true,
+              "properties": {
+                "terminalId": { "$ref": "../defs.schema.json#/definitions/Id" },
+                "kind": { "type": "string", "enum": ["started", "data", "ended"] },
+                "stream": { "type": "string", "enum": ["stdout", "stderr"] },
+                "data": { "type": "string" },
+                "exitCode": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

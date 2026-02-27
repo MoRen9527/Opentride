@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/defs.schema.json",
+  "title": "OpenTride Protocol v1 Shared Definitions",
+  "type": "object",
+  "definitions": {
+    "Id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "TimestampMs": {
+      "type": "number",
+      "minimum": 0
+    },
+    "Platform": {
+      "type": "string",
+      "enum": ["win32", "linux", "darwin"]
+    },
+    "PathBase": {
+      "type": "string",
+      "enum": ["absolute", "workspaceRelative"]
+    },
+    "Error": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["code"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "message": { "type": "string" },
+        "details": { "type": "object", "additionalProperties": true },
+        "retryable": { "type": "boolean" },
+        "cause": { "$ref": "#/definitions/Error" }
+      }
+    },
+    "EnvelopeContext": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "workspaceRoot": { "type": "string" },
+        "cwd": { "type": "string" },
+        "pathBase": { "$ref": "#/definitions/PathBase" },
+        "platform": { "$ref": "#/definitions/Platform" },
+        "env": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+    "Message": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "role", "createdAt"],
+      "properties": {
+        "id": { "$ref": "#/definitions/Id" },
+        "role": { "type": "string", "enum": ["system", "user", "assistant"] },
+        "createdAt": { "$ref": "#/definitions/TimestampMs" },
+        "text": { "type": "string" },
+        "parts": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Part" }
+        },
+        "model": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "providerId": { "type": "string" },
+            "modelId": { "type": "string" }
+          }
+        }
+      }
+    },
+    "Part": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "$ref": "#/definitions/Id" },
+        "type": {
+          "type": "string",
+          "enum": ["text", "delta", "tool", "file", "terminal", "patch", "error"]
+        },
+        "text": { "type": "string" },
+        "data": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "ToolCallStatus": {
+      "type": "string",
+      "enum": ["pending", "running", "completed", "error", "canceled"]
+    },
+    "ToolCall": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "name", "status", "input"],
+      "properties": {
+        "id": { "$ref": "#/definitions/Id" },
+        "name": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/definitions/ToolCallStatus" },
+        "messageId": { "$ref": "#/definitions/Id" },
+        "input": { "type": "object", "additionalProperties": true },
+        "progress": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "message": { "type": "string" },
+            "percent": { "type": "number", "minimum": 0, "maximum": 100 },
+            "phase": { "type": "string" }
+          }
+        },
+        "timing": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "queuedAt": { "$ref": "#/definitions/TimestampMs" },
+            "startedAt": { "$ref": "#/definitions/TimestampMs" },
+            "endedAt": { "$ref": "#/definitions/TimestampMs" }
+          }
+        },
+        "result": { "type": "object", "additionalProperties": true },
+        "error": { "$ref": "#/definitions/Error" },
+        "cancel": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "requested": { "type": "boolean" },
+            "reason": { "type": "string" },
+            "by": { "type": "string", "enum": ["user", "agent", "system"] }
+          }
+        }
+      }
+    },
+    "PermissionOption": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["optionId", "label", "effect"],
+      "properties": {
+        "optionId": { "$ref": "#/definitions/Id" },
+        "label": { "type": "string" },
+        "effect": { "type": "string", "enum": ["allow_once", "allow_always", "reject_once"] }
+      }
+    },
+    "PermissionRequest": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["permissionId", "scope", "reason", "options"],
+      "properties": {
+        "permissionId": { "$ref": "#/definitions/Id" },
+        "scope": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string" },
+        "toolRef": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["toolCallId", "messageId"],
+          "properties": {
+            "toolCallId": { "$ref": "#/definitions/Id" },
+            "messageId": { "$ref": "#/definitions/Id" }
+          }
+        },
+        "constraints": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "pathBase": { "$ref": "#/definitions/PathBase" },
+            "patternType": { "type": "string", "enum": ["glob", "regex"] },
+            "maxFiles": { "type": "number", "minimum": 0 },
+            "maxBytes": { "type": "number", "minimum": 0 },
+            "ttlMs": { "type": "number", "minimum": 0 }
+          }
+        },
+        "preview": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "paths": { "type": "array", "items": { "type": "string" } },
+            "command": { "type": "string" },
+            "cwd": { "type": "string" },
+            "patch": { "type": "string" }
+          }
+        },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/PermissionOption" }
+        }
+      }
+    }
+  }
+}

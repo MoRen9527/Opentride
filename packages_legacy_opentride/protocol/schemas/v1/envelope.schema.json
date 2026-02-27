@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/envelope.schema.json",
+  "title": "OpenTride Protocol v1 Envelope",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["v", "kind", "type", "id", "payload"],
+  "properties": {
+    "v": { "type": "string", "enum": ["1.0"] },
+    "kind": { "type": "string", "enum": ["request", "response", "event", "notification"] },
+    "type": { "type": "string", "minLength": 1 },
+    "id": { "$ref": "defs.schema.json#/definitions/Id" },
+    "requestId": { "$ref": "defs.schema.json#/definitions/Id" },
+    "sessionId": { "$ref": "defs.schema.json#/definitions/Id" },
+    "ts": { "$ref": "defs.schema.json#/definitions/TimestampMs" },
+    "seq": { "type": "number", "minimum": 0 },
+    "streamId": { "$ref": "defs.schema.json#/definitions/Id" },
+    "meta": { "type": "object", "additionalProperties": true },
+    "context": { "$ref": "defs.schema.json#/definitions/EnvelopeContext" },
+    "payload": {},
+    "error": { "$ref": "defs.schema.json#/definitions/Error" }
+  }
+}

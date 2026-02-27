@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/events/permission.resolved.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "event" },
+        "type": { "const": "permission.resolved" },
+        "payload": {
+          "type": "object",
+          "required": ["sessionId", "runId", "permissionId", "resolution"],
+          "properties": {
+            "sessionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "runId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "permissionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "resolution": {
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": { "type": "string", "enum": ["approved", "rejected", "expired"] },
+                "optionId": { "$ref": "../defs.schema.json#/definitions/Id" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

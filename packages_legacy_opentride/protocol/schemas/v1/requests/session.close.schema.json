@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/requests/session.close.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "request" },
+        "type": { "const": "session.close" },
+        "payload": {
+          "type": "object",
+          "required": ["sessionId"],
+          "properties": {
+            "sessionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "reason": { "type": "string" }
+          }
+        }
+      }
+    }
+  ]
+}

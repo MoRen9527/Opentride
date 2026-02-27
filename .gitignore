@@ -1,0 +1,17 @@
+# Reference snapshots / local-only materials (do not commit)
+reference/
+
+# Dependencies / build outputs
+node_modules/
+dist/
+out/
+.turbo/
+.bun/
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

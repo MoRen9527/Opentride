@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/requests/run.start.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "request" },
+        "type": { "const": "run.start" },
+        "payload": {
+          "type": "object",
+          "required": ["sessionId", "input"],
+          "properties": {
+            "sessionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "input": {
+              "type": "object",
+              "required": ["messages"],
+              "properties": {
+                "messages": {
+                  "type": "array",
+                  "items": { "$ref": "../defs.schema.json#/definitions/Message" }
+                }
+              }
+            },
+            "options": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "stream": { "type": "boolean" },
+                "temperature": { "type": "number" },
+                "topP": { "type": "number" },
+                "model": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "providerId": { "type": "string" },
+                    "modelId": { "type": "string" }
+                  }
+                }
+              }
+            },
+            "context": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "activeFileUris": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

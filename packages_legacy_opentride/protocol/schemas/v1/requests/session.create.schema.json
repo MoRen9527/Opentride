@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/requests/session.create.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "request" },
+        "type": { "const": "session.create" },
+        "payload": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "workspaceRoot": { "type": "string" },
+            "cwd": { "type": "string" },
+            "toolPolicy": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "file": { "type": "boolean" },
+                "terminal": { "type": "boolean" }
+              }
+            },
+            "metadata": { "type": "object", "additionalProperties": true }
+          }
+        }
+      }
+    }
+  ]
+}

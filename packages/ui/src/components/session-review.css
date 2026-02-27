@@ -1,0 +1,319 @@
+[data-component="session-review"] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  contain: strict;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* [data-slot="session-review-container"] { */
+  /*   height: 100%; */
+  /* } */
+
+  [data-slot="session-review-header"] {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: var(--background-stronger);
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+  }
+
+  [data-slot="session-review-title"] {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-large);
+    color: var(--text-strong);
+  }
+
+  [data-slot="session-review-actions"] {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    padding-right: 1px;
+  }
+
+  [data-component="sticky-accordion-header"] {
+    top: 40px;
+
+    &[data-expanded]::before {
+      top: -40px;
+    }
+  }
+
+  [data-slot="accordion-trigger"] {
+    background-color: var(--background-stronger) !important;
+  }
+
+  [data-slot="accordion-item"] {
+    [data-slot="accordion-content"] {
+      display: none;
+    }
+    &[data-expanded] {
+      [data-slot="accordion-content"] {
+        display: block;
+      }
+    }
+  }
+
+  [data-slot="accordion-content"] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  [data-slot="session-review-accordion-content"] {
+    position: relative;
+    overflow: hidden;
+  }
+
+  [data-slot="session-review-comment-popover-content"] {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: -8px;
+    z-index: 6;
+    min-width: 200px;
+    max-width: min(320px, calc(100vw - 48px));
+    border-radius: 10px;
+    background-color: var(--surface-raised-stronger-non-alpha);
+    box-shadow: var(--shadow-lg-border-base);
+    padding: 12px;
+  }
+
+  [data-slot="session-review-trigger-content"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+  }
+
+  [data-slot="session-review-file-info"] {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  [data-slot="session-review-file-name-container"] {
+    display: flex;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  [data-slot="session-review-directory"] {
+    color: var(--text-base);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    direction: rtl;
+    text-align: left;
+  }
+
+  [data-slot="session-review-filename"] {
+    color: var(--text-strong);
+    flex-shrink: 0;
+  }
+
+  [data-slot="session-review-view-button"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin-left: 8px;
+    border: none;
+    background: transparent;
+    color: var(--text-base);
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      color: var(--text-strong);
+      background: var(--surface-base);
+    }
+  }
+
+  [data-slot="accordion-trigger"]:hover [data-slot="session-review-view-button"] {
+    opacity: 1;
+  }
+
+  [data-slot="session-review-trigger-actions"] {
+    flex-shrink: 0;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  [data-slot="session-review-change"] {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+  }
+
+  [data-slot="session-review-change"][data-type="added"] {
+    color: var(--icon-diff-add-base);
+  }
+
+  [data-slot="session-review-change"][data-type="removed"] {
+    color: var(--icon-diff-delete-base);
+  }
+
+  [data-slot="session-review-file-container"] {
+    padding: 0;
+  }
+
+  [data-slot="session-review-image-container"] {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    background: var(--background-stronger);
+  }
+
+  [data-slot="session-review-image"] {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid var(--border-weak-base);
+    background: var(--background-base);
+  }
+
+  [data-slot="session-review-image-placeholder"] {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-small);
+    color: var(--text-weak);
+  }
+
+  [data-slot="session-review-audio-container"] {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    background: var(--background-stronger);
+  }
+
+  [data-slot="session-review-audio"] {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  [data-slot="session-review-audio-placeholder"] {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-small);
+    color: var(--text-weak);
+  }
+
+  [data-slot="session-review-diff-wrapper"] {
+    position: relative;
+    overflow: hidden;
+  }
+
+  [data-slot="session-review-comment-anchor"] {
+    position: absolute;
+    right: 12px;
+    z-index: 5;
+  }
+
+  [data-slot="session-review-comment-button"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--icon-interactive-base);
+    box-shadow: var(--shadow-xs);
+    cursor: pointer;
+
+    [data-slot="icon-svg"] {
+      color: var(--white);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      box-shadow: var(--shadow-xs-border-focus);
+    }
+  }
+
+  [data-slot="session-review-comment-hover"] {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 320px;
+  }
+
+  [data-slot="session-review-comment-popover"] {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  [data-slot="session-review-comment-hover-label"],
+  [data-slot="session-review-comment-popover-label"] {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-weak);
+  }
+
+  [data-slot="session-review-comment-hover-text"],
+  [data-slot="session-review-comment-popover-text"] {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-strong);
+    white-space: pre-wrap;
+  }
+
+  [data-slot="session-review-comment-preview"] {
+    margin: 0;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-base);
+    border: 1px solid color-mix(in oklch, var(--border-base) 55%, transparent);
+    color: var(--text-base);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-small);
+    line-height: 1.4;
+    white-space: pre-wrap;
+  }
+
+  [data-slot="session-review-comment-textarea"] {
+    width: 320px;
+    max-width: calc(100vw - 48px);
+    resize: vertical;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-base);
+    border: 1px solid color-mix(in oklch, var(--border-base) 55%, transparent);
+    color: var(--text-strong);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-small);
+    line-height: 1.4;
+
+    &:focus {
+      outline: none;
+      box-shadow: var(--shadow-xs-border-focus);
+    }
+  }
+
+  [data-slot="session-review-comment-actions"] {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}

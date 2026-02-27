@@ -1,0 +1,343 @@
+{
+  "name": "opencode",
+  "displayName": "opencode",
+  "description": "opencode for VS Code",
+  "version": "1.1.34",
+  "publisher": "sst-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anomalyco/opencode"
+  },
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#000000",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "enabledApiProposals": [
+    "editorInsets"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:opencode.openChat",
+    "onCommand:opencode.openChatInSidebar",
+    "onCommand:opencode.openChatInEditor",
+    "onCommand:opencode.setupChatLayout",
+    "onView:opencode.chatView",
+    "onCommand:opencode.openTerminal",
+    "onCommand:opencode.openNewTerminal",
+    "onCommand:opencode.addFilepathToTerminal",
+    "onCommand:opencode.authLoginInTerminal",
+    "onCommand:opencode.authLogoutInTerminal",
+    "onCommand:opencode.listModelsInTerminal",
+    "onCommand:opencode.dev.simulatePermissionPrompt",
+    "onCommand:opencode.dev.simulateTerminalPermissionPrompt",
+    "onCommand:opencode.dev.checkInsetSupport",
+    "onCommand:opencode.dev.showEditsDebugStatus",
+    "onCommand:opencode.dev.toggleEditsDebug",
+    "onCommand:opencode.dev.toggleEditsDebugVerbose",
+    "onCommand:opencode.dev.showTerminalAutoApproveDebugStatus",
+    "onCommand:opencode.dev.toggleTerminalAutoApproveDebug",
+    "onCommand:opencode.dev.toggleTerminalAutoApproveDebugVerbose",
+    "onCommand:opencode.dev.simulateThinkingTranscript"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "opencode.openChat",
+        "title": "Open opencode Chat"
+      },
+      {
+        "command": "opencode.openChatInSidebar",
+        "title": "Open opencode Chat (Sidebar)"
+      },
+      {
+        "command": "opencode.openChatInEditor",
+        "title": "Open opencode Chat (Editor)"
+      },
+      {
+        "command": "opencode.setupChatLayout",
+        "title": "opencode: Setup Chat Layout (Secondary Side Bar)"
+      },
+      {
+        "command": "opencode.authLoginInTerminal",
+        "title": "opencode: Login (auth login)"
+      },
+      {
+        "command": "opencode.authLogoutInTerminal",
+        "title": "opencode: Logout (auth logout)"
+      },
+      {
+        "command": "opencode.listModelsInTerminal",
+        "title": "opencode: List Models (models --refresh)"
+      },
+      {
+        "command": "opencode.openTerminal",
+        "title": "Open opencode",
+        "icon": {
+          "light": "images/button-dark.svg",
+          "dark": "images/button-light.svg"
+        }
+      },
+      {
+        "command": "opencode.openNewTerminal",
+        "title": "Open opencode in new tab",
+        "icon": {
+          "light": "images/button-dark.svg",
+          "dark": "images/button-light.svg"
+        }
+      },
+      {
+        "command": "opencode.addFilepathToTerminal",
+        "title": "Add Filepath to Terminal"
+      },
+      {
+        "command": "opencode.dev.simulatePermissionPrompt",
+        "title": "opencode: Dev: Simulate Permission Prompt"
+      },
+      {
+        "command": "opencode.dev.simulateTerminalPermissionPrompt",
+        "title": "opencode: Dev: Simulate Terminal Permission Prompt"
+      },
+      {
+        "command": "opencode.dev.checkInsetSupport",
+        "title": "opencode: Dev: Check Inset Support"
+      },
+      {
+        "command": "opencode.dev.simulateEditApproval",
+        "title": "opencode: Dev: Simulate Edit Approval"
+      },
+      {
+        "command": "opencode.dev.simulateThinkingTranscript",
+        "title": "opencode: Dev: Simulate Thinking Transcript"
+      },
+      {
+        "command": "opencode.dev.showEditsDebugStatus",
+        "title": "opencode: Dev: Show Edits Debug Status"
+      },
+      {
+        "command": "opencode.dev.toggleEditsDebug",
+        "title": "opencode: Dev: Toggle Edits Debug Logs"
+      },
+      {
+        "command": "opencode.dev.toggleEditsDebugVerbose",
+        "title": "opencode: Dev: Toggle Edits Debug Verbose"
+      },
+      {
+        "command": "opencode.dev.showTerminalAutoApproveDebugStatus",
+        "title": "opencode: Dev: Show Terminal Auto-Approve Debug Status"
+      },
+      {
+        "command": "opencode.dev.toggleTerminalAutoApproveDebug",
+        "title": "opencode: Dev: Toggle Terminal Auto-Approve Debug Logs"
+      },
+      {
+        "command": "opencode.dev.toggleTerminalAutoApproveDebugVerbose",
+        "title": "opencode: Dev: Toggle Terminal Auto-Approve Debug Verbose"
+      },
+      {
+        "command": "opencode.edits.keepFile",
+        "title": "Keep",
+        "icon": {
+          "light": "images/edits-keep.svg",
+          "dark": "images/edits-keep.svg"
+        }
+      },
+      {
+        "command": "opencode.edits.undoFile",
+        "title": "Undo",
+        "icon": {
+          "light": "images/edits-undo.svg",
+          "dark": "images/edits-undo.svg"
+        }
+      },
+      {
+        "command": "opencode.edits.prevHunk",
+        "title": "Previous change",
+        "icon": {
+          "light": "images/edits-prev.svg",
+          "dark": "images/edits-prev.svg"
+        }
+      },
+      {
+        "command": "opencode.edits.nextHunk",
+        "title": "Next change",
+        "icon": {
+          "light": "images/edits-next.svg",
+          "dark": "images/edits-next.svg"
+        }
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "opencode.openNewTerminal",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "opencode.openTerminal",
+        "title": "Run opencode",
+        "key": "cmd+escape",
+        "mac": "cmd+escape",
+        "win": "ctrl+escape",
+        "linux": "ctrl+escape"
+      },
+      {
+        "command": "opencode.openNewTerminal",
+        "title": "Run opencode",
+        "key": "cmd+shift+escape",
+        "mac": "cmd+shift+escape",
+        "win": "ctrl+shift+escape",
+        "linux": "ctrl+shift+escape"
+      },
+      {
+        "command": "opencode.addFilepathToTerminal",
+        "title": "opencode: Insert At-Mentioned",
+        "key": "cmd+alt+k",
+        "mac": "cmd+alt+k",
+        "win": "ctrl+alt+K",
+        "linux": "ctrl+alt+K"
+      }
+    ],
+    "configuration": {
+      "title": "opencode",
+      "properties": {
+        "opencode.chat.autoMoveToSecondarySidebar": {
+          "type": "boolean",
+          "default": false,
+          "description": "On first open, automatically move the opencode Chat view to the Secondary Side Bar (right side), best-effort."
+        },
+        "opencode.transport": {
+          "type": "string",
+          "enum": [
+            "http+sse",
+            "acp"
+          ],
+          "default": "acp",
+          "description": "Transport for connecting to opencode: legacy HTTP+SSE bridge or ACP over stdio (recommended)."
+        },
+        "opencode.acpCommand": {
+          "type": "string",
+          "default": "opencode",
+          "description": "Command used to launch the ACP subprocess (e.g. 'opencode', or 'bun run --cwd <repo>/packages/opencode src/index.ts')."
+        },
+        "opencode.acpArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "acp"
+          ],
+          "description": "Arguments passed to the ACP command. Default launches 'opencode acp'."
+        },
+        "opencode.acpInitializeTimeoutMs": {
+          "type": "number",
+          "default": 60000,
+          "minimum": 1000,
+          "description": "Timeout (ms) for ACP initialize handshake. Increase on slower machines or first-run builds."
+        },
+        "opencode.acpNewSessionTimeoutMs": {
+          "type": "number",
+          "default": 60000,
+          "minimum": 1000,
+          "description": "Timeout (ms) for ACP newSession handshake. Increase if initialization succeeds but session creation is slow."
+        },
+        "opencode.serverBaseUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:4165",
+          "description": "opencode server base URL (e.g. http://127.0.0.1:4165)."
+        },
+        "opencode.directory": {
+          "type": "string",
+          "default": "",
+          "description": "Optional project directory forwarded to opencode server as the directory query param."
+        },
+        "opencode.dev.editsDebug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable in-editor edits debug logging to the Output channel (prefix: [edits-dev])."
+        },
+        "opencode.dev.editsDebugVerbose": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable verbose edits debug logs (more noisy; includes hunk/overlay details)."
+        },
+        "opencode.dev.terminalAutoApproveDebug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable terminal auto-approve debug logging to the Output channel (prefix: [terminal-autoapprove])."
+        },
+        "opencode.dev.terminalAutoApproveDebugVerbose": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable verbose terminal auto-approve debug logs (includes parsed commands and rule matches)."
+        },
+        "opencode.dev.editsCodeLensFallback": {
+          "type": "boolean",
+          "default": false,
+          "description": "Last-resort CodeLens controls for edits when insets are unavailable. Prefer inset/decoration overlays."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "opencode",
+          "title": "opencode",
+          "icon": "images/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "opencode": [
+        {
+          "id": "opencode.chatView",
+          "name": "Chat",
+          "icon": "images/icon.png",
+          "type": "webview"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "bun run package",
+    "compile": "bun run check-types && bun run lint && node esbuild.js",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "bun run check-types && bun run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "bun run compile-tests && bun run compile && bun run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.109.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@agentclientprotocol/sdk": "0.12.0",
+    "@vscode/codicons": "^0.0.44",
+    "diff": "^8.0.3"
+  }
+}

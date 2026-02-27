@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/events/chat.delta.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "event" },
+        "type": { "const": "chat.delta" },
+        "payload": {
+          "type": "object",
+          "required": ["sessionId", "runId", "messageId", "deltaText"],
+          "properties": {
+            "sessionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "runId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "messageId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "deltaText": { "type": "string" }
+          }
+        }
+      }
+    }
+  ]
+}

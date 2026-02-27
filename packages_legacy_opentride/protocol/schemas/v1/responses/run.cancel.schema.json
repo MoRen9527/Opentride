@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/responses/run.cancel.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload", "requestId"],
+      "properties": {
+        "kind": { "const": "response" },
+        "type": { "const": "run.cancel" },
+        "payload": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": ["result"],
+              "not": { "required": ["error"] },
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "required": ["cancelled"],
+                  "properties": {
+                    "cancelled": { "type": "boolean" }
+                  }
+                }
+              }
+            },
+            {
+              "required": ["error"],
+              "not": { "required": ["result"] },
+              "properties": {
+                "error": { "$ref": "../defs.schema.json#/definitions/Error" }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

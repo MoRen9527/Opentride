@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/requests/permission.reply.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "request" },
+        "type": { "const": "permission.reply" },
+        "payload": {
+          "type": "object",
+          "required": ["sessionId", "permissionId", "decision"],
+          "properties": {
+            "sessionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "permissionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "decision": {
+              "type": "object",
+              "required": ["optionId"],
+              "properties": {
+                "optionId": { "$ref": "../defs.schema.json#/definitions/Id" }
+              }
+            },
+            "scope": { "type": "string", "enum": ["once", "session", "workspace", "global"] },
+            "editedInput": { "type": "object", "additionalProperties": true }
+          }
+        }
+      }
+    }
+  ]
+}

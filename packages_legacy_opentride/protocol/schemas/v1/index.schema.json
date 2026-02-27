@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/index.schema.json",
+  "title": "OpenTride Protocol v1 Message Index",
+  "oneOf": [
+    {
+      "title": "Requests",
+      "oneOf": [
+        { "$ref": "requests/hello.schema.json" },
+        { "$ref": "requests/session.create.schema.json" },
+        { "$ref": "requests/session.get.schema.json" },
+        { "$ref": "requests/session.close.schema.json" },
+        { "$ref": "requests/run.start.schema.json" },
+        { "$ref": "requests/run.cancel.schema.json" },
+        { "$ref": "requests/permission.reply.schema.json" }
+      ]
+    },
+    {
+      "title": "Responses",
+      "oneOf": [
+        { "$ref": "responses/hello.schema.json" },
+        { "$ref": "responses/session.create.schema.json" },
+        { "$ref": "responses/session.get.schema.json" },
+        { "$ref": "responses/session.close.schema.json" },
+        { "$ref": "responses/run.start.schema.json" },
+        { "$ref": "responses/run.cancel.schema.json" },
+        { "$ref": "responses/permission.reply.schema.json" }
+      ]
+    },
+    {
+      "title": "Events",
+      "oneOf": [
+        { "$ref": "events/session.updated.schema.json" },
+        { "$ref": "events/run.started.schema.json" },
+        { "$ref": "events/chat.delta.schema.json" },
+        { "$ref": "events/chat.completed.schema.json" },
+        { "$ref": "events/tool.state.schema.json" },
+        { "$ref": "events/permission.request.schema.json" },
+        { "$ref": "events/permission.resolved.schema.json" },
+        { "$ref": "events/terminal.event.schema.json" },
+        { "$ref": "events/run.completed.schema.json" },
+        { "$ref": "events/run.failed.schema.json" },
+        { "$ref": "events/run.cancelled.schema.json" }
+      ]
+    }
+  ]
+}

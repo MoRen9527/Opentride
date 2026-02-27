@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/events/session.updated.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload"],
+      "properties": {
+        "kind": { "const": "event" },
+        "type": { "const": "session.updated" },
+        "payload": {
+          "type": "object",
+          "required": ["sessionId", "patch"],
+          "properties": {
+            "sessionId": { "$ref": "../defs.schema.json#/definitions/Id" },
+            "patch": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "cwd": { "type": "string" },
+                "model": { "type": "object", "additionalProperties": true },
+                "state": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://opentride.dev/protocol/v1/responses/hello.schema.json",
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["kind", "type", "payload", "requestId"],
+      "properties": {
+        "kind": { "const": "response" },
+        "type": { "const": "hello" },
+        "payload": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": ["result"],
+              "not": { "required": ["error"] },
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "required": ["server", "protocol"],
+                  "properties": {
+                    "server": {
+                      "type": "object",
+                      "required": ["name", "version"],
+                      "properties": {
+                        "name": { "type": "string" },
+                        "version": { "type": "string" },
+                        "build": { "type": "string" }
+                      }
+                    },
+                    "protocol": {
+                      "type": "object",
+                      "required": ["v"],
+                      "properties": {
+                        "v": { "type": "string" }
+                      }
+                    },
+                    "capabilities": { "type": "object", "additionalProperties": true },
+                    "limits": { "type": "object", "additionalProperties": true },
+                    "eventStream": { "type": "object", "additionalProperties": true }
+                  }
+                }
+              }
+            },
+            {
+              "required": ["error"],
+              "not": { "required": ["result"] },
+              "properties": {
+                "error": { "$ref": "../defs.schema.json#/definitions/Error" }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

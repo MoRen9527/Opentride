@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>贪吃蛇</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #000;
+      }
+      canvas {
+        background: #111;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <script>
+      const c = document.getElementById("c")
+      const ctx = c.getContext("2d")
+      c.width = 400
+      c.height = 400
+      const s = 20
+      let snake = [{ x: 10, y: 10 }]
+      let dir = { x: 1, y: 0 }
+      let food = { x: 15, y: 15 }
+      let gameover = false
+
+      document.addEventListener("keydown", (e) => {
+        if (gameover) return
+        if (e.key === "ArrowUp" && dir.y === 0) dir = { x: 0, y: -1 }
+        if (e.key === "ArrowDown" && dir.y === 0) dir = { x: 0, y: 1 }
+        if (e.key === "ArrowLeft" && dir.x === 0) dir = { x: -1, y: 0 }
+        if (e.key === "ArrowRight" && dir.x === 0) dir = { x: 1, y: 0 }
+      })
+
+      function game() {
+        if (gameover) return
+        const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y }
+        if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20) {
+          gameover = true
+          return
+        }
+        for (let segment of snake) {
+          if (head.x === segment.x && head.y === segment.y) {
+            gameover = true
+            return
+          }
+        }
+        snake.unshift(head)
+        if (head.x === food.x && head.y === food.y) {
+          food = { x: Math.floor(Math.random() * 20), y: Math.floor(Math.random() * 20) }
+        } else {
+          snake.pop()
+        }
+      }
+
+      function draw() {
+        ctx.fillStyle = "#111"
+        ctx.fillRect(0, 0, 400, 400)
+        ctx.fillStyle = "#0f0"
+        for (let segment of snake) {
+          ctx.fillRect(segment.x * s, segment.y * s, s - 2, s - 2)
+        }
+        ctx.fillStyle = "#f00"
+        ctx.fillRect(food.x * s, food.y * s, s - 2, s - 2)
+        if (gameover) {
+          ctx.fillStyle = "#fff"
+          ctx.font = "30px Arial"
+          ctx.textAlign = "center"
+          ctx.fillText("游戏结束", 200, 200)
+        }
+      }
+
+      setInterval(() => {
+        game()
+        draw()
+      }, 100)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,426 @@
+:root {
+	color: var(--vscode-foreground);
+	background: var(--vscode-editor-background);
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	color: var(--vscode-foreground);
+	background: var(--vscode-editor-background);
+	font-family: var(--vscode-font-family);
+	font-size: var(--vscode-font-size);
+}
+
+.app {
+	display: grid;
+	grid-template-columns: 240px 1fr;
+	height: 100vh;
+}
+
+.sidebar {
+	background: var(--vscode-sideBar-background);
+	border-right: 1px solid var(--vscode-sideBar-border, var(--vscode-editorGroup-border));
+	padding: 16px 12px;
+	box-sizing: border-box;
+}
+
+.sidebarTitle {
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	opacity: 0.9;
+}
+
+.navItem {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+	border-radius: 6px;
+	cursor: pointer;
+	user-select: none;
+	border: none;
+	background: transparent;
+	color: inherit;
+	width: 100%;
+	text-align: left;
+}
+
+.navItem.active {
+	background: var(--vscode-list-activeSelectionBackground);
+	color: var(--vscode-list-activeSelectionForeground);
+}
+
+.page.hidden {
+	display: none;
+}
+
+.section {
+	margin-top: 16px;
+}
+
+.hidden {
+	display: none;
+}
+
+.sectionTitle {
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.8;
+	margin: 8px 0;
+}
+
+.inlineForm {
+	display: grid;
+	grid-template-columns: 1fr 2fr 2fr auto;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+.profileRow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.profileRow .select {
+	min-width: 240px;
+}
+
+.inlineForm .text,
+.inlineForm .select {
+	height: 32px;
+	padding: 0 10px;
+	border-radius: 6px;
+	border: 1px solid var(--vscode-input-border, transparent);
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	outline: none;
+}
+
+.inlineForm .primary {
+	height: 32px;
+	padding: 0 12px;
+	border-radius: 6px;
+	border: 1px solid var(--vscode-button-border, transparent);
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	cursor: pointer;
+}
+
+.rowRight {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.discoverRow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.ghost {
+	height: 32px;
+	padding: 0 10px;
+	border-radius: 6px;
+	border: 1px solid var(--vscode-button-border, transparent);
+	background: transparent;
+	color: var(--vscode-foreground);
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+.ghost:hover {
+	background: var(--vscode-toolbar-hoverBackground, var(--vscode-list-hoverBackground));
+}
+
+.main {
+	padding: 18px 18px;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+.authBox {
+	border: 1px solid var(--vscode-editorGroup-border);
+	border-radius: 8px;
+	padding: 10px 12px;
+	background: color-mix(in srgb, var(--vscode-editor-background) 92%, var(--vscode-sideBar-background));
+	margin-bottom: 10px;
+}
+
+.authHeaderRow {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.authHeaderRow .authKey {
+	flex: 0 0 auto;
+}
+
+.ghost.small {
+	height: 24px;
+	padding: 0 8px;
+	border-radius: 6px;
+	font-size: 12px;
+}
+
+.authDetails {
+	margin-top: 10px;
+}
+
+.authRow {
+	display: grid;
+	grid-template-columns: 64px 1fr;
+	gap: 10px;
+	align-items: start;
+}
+
+.authKey {
+	font-size: 12px;
+	opacity: 0.85;
+	font-weight: 650;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.authValue {
+	min-height: 18px;
+	white-space: pre-wrap;
+	word-break: break-word;
+	opacity: 0.85;
+}
+
+.authHint {
+	margin-top: 8px;
+}
+
+.actionBox {
+	border: 1px solid var(--vscode-editorGroup-border);
+	border-radius: 8px;
+	padding: 10px 12px;
+	background: color-mix(in srgb, var(--vscode-editor-background) 92%, var(--vscode-sideBar-background));
+	margin-bottom: 12px;
+}
+
+.actionHeader {
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.85;
+	font-weight: 650;
+}
+
+.actionButtons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+
+.h1 {
+	font-size: 22px;
+	font-weight: 650;
+	margin: 0;
+}
+
+.searchRow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.search {
+	flex: 1;
+	height: 32px;
+	padding: 0 10px;
+	border-radius: 6px;
+	border: 1px solid var(--vscode-input-border, transparent);
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	outline: none;
+}
+
+.iconButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 32px;
+	width: 32px;
+	border-radius: 6px;
+	border: 1px solid var(--vscode-button-border, transparent);
+	background: var(--vscode-button-secondaryBackground, var(--vscode-button-background));
+	color: var(--vscode-button-secondaryForeground, var(--vscode-button-foreground));
+	cursor: pointer;
+}
+
+.iconButton:hover {
+	filter: brightness(1.05);
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--vscode-editorGroup-border);
+}
+
+.toolGroup {
+	border-top: 1px solid var(--vscode-editorGroup-border);
+	margin: 0;
+}
+
+.toolGroupSummary {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	padding: 10px 0;
+	cursor: pointer;
+	user-select: none;
+}
+
+.toolGroupArrow {
+	opacity: 0.8;
+	transition: transform 0.12s ease;
+}
+
+.toolGroup[open] .toolGroupArrow {
+	transform: rotate(90deg);
+}
+
+/* Hide default marker and rely on our own affordance via opacity/hover. */
+.toolGroupSummary::-webkit-details-marker {
+	display: none;
+}
+
+.toolGroupTitle {
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.85;
+	font-weight: 650;
+}
+
+.toolGroupMeta {
+	font-size: 12px;
+	opacity: 0.7;
+	margin-left: auto;
+}
+
+.toolGroupList {
+	border-top: none;
+}
+
+.toolGroupList .row {
+	padding-left: 22px;
+}
+
+.toolGroup[open] > .toolGroupSummary {
+	opacity: 0.95;
+}
+
+.toolGroupSummary:hover {
+	background: var(--vscode-toolbar-hoverBackground, var(--vscode-list-hoverBackground));
+	border-radius: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 12px;
+	align-items: center;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--vscode-editorGroup-border);
+}
+
+.modelName {
+	font-weight: 550;
+	line-height: 1.2;
+}
+
+.modelMeta {
+	font-size: 12px;
+	opacity: 0.75;
+	margin-top: 4px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+}
+
+/* Models status under Provider Status -> Status: allow multi-line like authValue. */
+#modelsStatus.modelMeta {
+	white-space: pre-wrap;
+	overflow: visible;
+	text-overflow: clip;
+	word-break: break-word;
+}
+
+/* Toggle */
+.toggle {
+	position: relative;
+	width: 44px;
+	height: 24px;
+}
+
+.toggle input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: var(--vscode-input-background);
+	border: 1px solid var(--vscode-input-border, var(--vscode-editorGroup-border));
+	transition: 0.12s;
+	border-radius: 999px;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 18px;
+	width: 18px;
+	left: 3px;
+	top: 2px;
+	background: var(--vscode-editor-background);
+	transition: 0.12s;
+	border-radius: 999px;
+	box-shadow: 0 0 0 1px var(--vscode-editorGroup-border);
+}
+
+.toggle input:checked + .slider {
+	background: var(--vscode-testing-iconPassed, var(--vscode-button-background));
+	border-color: transparent;
+}
+
+.toggle input:checked + .slider:before {
+	transform: translateX(20px);
+}
+
+.empty {
+	opacity: 0.75;
+	padding: 16px 0;
+}
