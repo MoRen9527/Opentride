@@ -65,5 +65,5 @@
 
 ## 当前执行状态（2026-02-27）
 
-- 已完成下沉：`docs/`、`infra/`、`nix/`、`packages_legacy_opentride/`、`patches/`、`script/`、`scripts/`、`sdks/`、`specs/`、`themes/`。
-- 未完成：`packages/`（本地进程占用导致 `git mv` 权限错误，需释放占用后重试）。
+- 已完成下沉：`docs/`、`infra/`、`nix/`、`packages/`、`packages_legacy_opentride/`、`patches/`、`script/`、`scripts/`、`sdks/`、`specs/`、`themes/`。
+- `packages/` 已采用“分目录+分文件迁移”完成下沉至 `opencode-dev/packages/`，旧路径已清理。
