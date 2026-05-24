@@ -1,5 +1,5 @@
 {
-  "name": "opentride",
+  "name": "tride",
   "private": true,
   "packageManager": "bun@1.3.5",
   "workspaces": [
@@ -9,8 +9,8 @@
     "typecheck": "turbo typecheck",
     "build": "turbo build",
     "lint": "turbo lint",
-    "runtime:start": "npm -w @opentride/runtime run start",
-    "runtime:dev": "npm -w @opentride/runtime run dev"
+    "runtime:start": "npm -w @tride/runtime run start",
+    "runtime:dev": "npm -w @tride/runtime run dev"
   },
   "devDependencies": {
     "turbo": "^2.0.0",
