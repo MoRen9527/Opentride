@@ -2,13 +2,13 @@
 
 ## Module Overview
 
-- `Tride` 是本机子进程 runtime / CLI 与 agentic orchestration 底座。
+- `Tride` 是 PC 端调用 vibe coding 工具的适配层，也是本机子进程 runtime / CLI 与 agentic orchestration 底座。
 - 它在整体商业模式中属于 PC 端软件层，负责让 `opencode`、`claude code`、`codex` 等开发能力进入设计与开发链路。
 
 ## Current Product Scope
 
-- 支撑开发者工具编排、runtime、CLI、SDK 和工具调用能力。
-- 作为 `Tripilot + Tride + vscodium + CLI` 组成的 PC 端软件层中的开发工具与 orchestration 底座。
+- 支撑开发者工具编排、runtime、CLI、SDK、vibe coding 工具调用和 agentic orchestration 能力。
+- 作为 `TriPilot + Tride + vscodium + CLI` 组成的 PC 端软件层中的开发工具与 orchestration 底座。
 - 配合 `TriLC` 承接本地化任务、本地工具链执行与部分服务域下发任务。
 - 也可直接作为用户自用自动化、PC 软件自动化与 `vibe coding` 的工作台能力层。
 - 影响研发效率、执行能力和开发成本。
@@ -30,12 +30,12 @@
 
 ## Cross-Module Dependencies
 
-- 与 `Tripilot` 一起支撑工具入口和开发工作台能力。
+- 与 `TriPilot` 一起支撑工具入口和开发工作台能力。
 - 与 `vscodium` 共同组成 PC 端软件层。
 - 与 `TriLC` 协同完成本地化任务与本地域工具执行。
 - 与 `TriMC` 在实际研发链路中形成运行面与开发工具层协同。
 - 与 `TriHost` 存在未来正式宿主适配边界关系。
-- 与 `Tristaciss` 等模块在实际研发链路中发生协同。
+- 与 `TriStaciss` 等模块在实际研发链路中发生协同。
 
 ## Architecture State
 
