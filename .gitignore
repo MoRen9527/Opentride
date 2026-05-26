@@ -1,4 +1,4 @@
-# Reference snapshots / local-only materials (do not commit)
+﻿# Reference snapshots / local-only materials (do not commit)
 reference/
 
 # Dependencies / build outputs
@@ -15,3 +15,10 @@ out/
 .DS_Store
 Thumbs.db
 .vscode/
+.codegraph/
+.cursor/
+vendor/
+build/
+coverage/
+.env
+.env.*
